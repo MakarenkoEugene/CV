@@ -22,11 +22,27 @@
     }
     ul {
       padding-left: 30px;
+      list-style: none;
     }
     ul > li {
       margin-bottom: 5px;
     }
+    ul > li::before {
+      content: "-"; /* Add content: \2022 is the CSS Code/unicode for a bullet */
+      color: var(--blue); /* Change the color */
+      font-weight: bold; /* If you want it to be bold */
+      display: inline-block; /* Needed to add space between the bullet and the text */
+      width: 1em; /* Also needed for space (tweak if needed) */
+      margin-left: -1em; /* Also needed for space (tweak if needed) */
+
+      transform: skewY(25deg);
+    }
+
     body {
+      position: relative;
+      width: 900px;
+      margin: auto;
+      --blue: #61aeff;
       padding: 30px;
       font-size: 1em;
       font-weight: 300;
@@ -43,26 +59,63 @@
       align-items: center;
     }
 
+    h4::before,
+    h2::before {
+      content: "";
+      width: 20px;
+      height: 5px;
+      display: inline-block;
+      background-color: var(--blue);
+      margin-right: 5px;
+      transform: skewY(25deg);
+    }
+
+    /* h4::before {
+      width: 15px;
+      height: 5px; */
+    /* } */
+
     img {
+      margin-top: 30px;
+      margin-left: 46px;
+      width: 289px;
+    }
+
+    body > div:first-child {
+      background: linear-gradient(-168deg, var(--blue) 50%, white 50%);
+      width: calc(100% + 60px);
       margin-left: -30px;
-      border-radius: 50%;
-      padding: 5px;
-      border: 1px solid rgb(192, 192, 192);
+      margin-top: -30px;
+      height: 280px;
+    }
+
+    body > div:first-child::after {
+      position: absolute;
+      left: 60px;
+      top: -10px;
+      content: "";
+      background: linear-gradient(-168deg, var(--blue) 50%, transparent 50%);
+      width: 300px;
+      height: 100px;
     }
 
     body > div:first-child > ul {
       line-height: 20px;
+      margin-top: -140px;
+    }
+
+    body > div:first-child > ul > li::before {
+      color: black;
     }
 
     body > div > ul {
-      list-style: none;
       font-size: 1.05em;
       line-height: 1.5;
     }
 
     section {
       display: flex;
-      flex-direction: row;
+      flex-direction: row-reverse;
       flex-wrap: nowrap;
       justify-content: space-around;
     }
@@ -77,7 +130,8 @@
     }
 
     section > div:first-child {
-      border-right: 1px solid rgb(192, 192, 192);
+      border-left: 1px solid rgb(192, 192, 192);
+      width: calc(83% - 60px);
     }
 
     section > div:first-child > div > p:nth-child(2) {
@@ -88,59 +142,17 @@
   </style>
   <body>
     <div>
-      <div>
-        <h1>Makarenko Eugene</h1>
-        <h3 style="opacity: 0.6;">Full Stack Developer</h3>
-      </div>
       <img src="./my_small.jpeg" alt="" />
+
+      <div style="margin-top: 75px; margin-left: 20px">
+        <h1 style="line-height: 1">Makarenko Eugene</h1>
+        <h3 style="opacity: 0.6">Full Stack Developer</h3>
+      </div>
       <ul>
-        <li>✉️ eugemakarenko@gmail.com</li>
-        <li>📞 +38 (099) 956 31 32</li>
-        <li>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            version="1.1"
-            id="Capa_1"
-            x="0px"
-            y="0px"
-            viewBox="0 0 512 512"
-            style="enable-background: new 0 0 512 512;"
-            xml:space="preserve"
-            width="20"
-            height="20"
-          >
-            <g>
-              <g>
-                <path
-                  d="M256,0C156.748,0,76,80.748,76,180c0,33.534,9.289,66.26,26.869,94.652l142.885,230.257    c2.737,4.411,7.559,7.091,12.745,7.091c0.04,0,0.079,0,0.119,0c5.231-0.041,10.063-2.804,12.75-7.292L410.611,272.22    C427.221,244.428,436,212.539,436,180C436,80.748,355.252,0,256,0z M384.866,256.818L258.272,468.186l-129.905-209.34    C113.734,235.214,105.8,207.95,105.8,180c0-82.71,67.49-150.2,150.2-150.2S406.1,97.29,406.1,180    C406.1,207.121,398.689,233.688,384.866,256.818z"
-                />
-              </g>
-            </g>
-            <g>
-              <g>
-                <path
-                  d="M256,90c-49.626,0-90,40.374-90,90c0,49.309,39.717,90,90,90c50.903,0,90-41.233,90-90C346,130.374,305.626,90,256,90z     M256,240.2c-33.257,0-60.2-27.033-60.2-60.2c0-33.084,27.116-60.2,60.2-60.2s60.1,27.116,60.1,60.2    C316.1,212.683,289.784,240.2,256,240.2z"
-                />
-              </g>
-            </g></svg
-          >Ukraine, Poltava
-        </li>
-        <li>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            id="regular"
-            enable-background="new 0 0 24 24"
-            height="20"
-            viewBox="0 0 24 24"
-            width="20"
-          >
-            <path
-              d="m.415 11.196 5.869 2.925c.227.112.495.104.712-.023l5.224-3.037-3.162 2.802c-.161.143-.253.347-.253.562v6.825c0 .72.919 1.023 1.35.451l2.537-3.373 6.274 3.573c.44.253 1.004-.001 1.106-.504l3.913-19.5c.117-.586-.466-1.064-1.008-.846l-22.5 8.775c-.604.236-.643 1.081-.062 1.37zm21.83-8.249-3.439 17.137-5.945-3.386c-.324-.185-.741-.103-.971.201l-1.585 2.107v-4.244l8.551-7.576c.677-.599-.101-1.664-.874-1.21l-11.39 6.622-3.992-1.989z"
-            />
-          </svg>
-          @MakarenkoEugen
-        </li>
+        <li>eugemakarenko@gmail.com</li>
+        <li>+38 (099) 956 31 32</li>
+        <li>Ukraine, Poltava</li>
+        <li>@MakarenkoEugen</li>
       </ul>
     </div>
 
@@ -149,35 +161,22 @@
       <div>
         <h2>Experience</h2>
         <div>
-          <h4>Self-education</h4>
-          <p>09.2017 - 11.2017</p>
-
-          <p>Main stack: HTML, CSS.</p>
-
-          <p>
-            Studying on the interactive courses "htmlacademy".
-          </p>
-        </div>
-        <div>
           <h4>HTML coder</h4>
-          <p>11.2017 - 04.2018</p>
+          <p>09.2017 - 05.2018</p>
 
           <p>Main stack: HTML, CSS.</p>
 
-          <p>- Deep Learning HTML5 (Architecture, Semantics, Accessibility, SVG)</p>
-          <p>- In-depth study of CSS (Adaptability, Preprocessors, Mobility, Support for old browsers, Animations)</p>
-          <p>- Create multiple Snippets (Placeholder images, Gallery, Grids, Navigation bar, etc...)</p>
-          <p>- Create more than 10+ one page websites from PSD</p>
-        </div>
+          <p>Studying on the interactive courses "html academy".</p>
 
-        <div>
-          <h4>_________</h4>
-          <p>04.2018 - 07.2018</p>
-          <p>Worked as a Kite-instructor in Odessa</p>
+          <p>Deep Learning HTML5 (Architecture, Semantics, Accessibility, SVG)</p>
+          <p>In-depth study of CSS (Adaptability, Preprocessors, Mobility, Support for old browsers, Animations)</p>
+
+          <p>Create multiple Snippets (Placeholder images, Gallery, Grids, Navigation bar, etc...)</p>
+          <p>Create more than 10+ one page websites from PSD</p>
         </div>
         <div>
-          <h4>Self-education</h4>
-          <p>07.2018 - 11.2018</p>
+          <h4>Self-education, Front-End developer</h4>
+          <p>05.2018 - 10.2018</p>
 
           <p>Main stack: JS, DOM, Browsers.</p>
 
@@ -195,9 +194,10 @@
           </p>
           <p>Wrote 5 versions of famous games (Tetris, Memory Game, Pac-Man, Three in A line, Snake)</p>
         </div>
+
         <div>
           <h4>Peculiar Ventures, Poltava - Front-End Intern</h4>
-          <p>11.2018 - 05.2019</p>
+          <p>10.2018 - 06.2019</p>
 
           <p>Main stack: React, React-Redux, Redux-Saga, TypeScript, GIT.</p>
 
@@ -210,13 +210,8 @@
           <p>Test code coverage with Jest, Enzyme, Redux-Saga.</p>
         </div>
         <div>
-          <h4>_________</h4>
-          <p>05.2019 - 08.2019</p>
-          <p>Worked as a Wake-instructor in Poltava</p>
-        </div>
-        <div>
-          <h4>Self-education</h4>
-          <p>08.2019 - 11.2019</p>
+          <h4>Self-education, Back-End developer</h4>
+          <p>06.2019 - 11.2019</p>
 
           <p>Main stack: Node, Express, MongoDB.</p>
 
@@ -224,35 +219,44 @@
             Study passed with "RisingStack: Node Hero" tutorial and Node Express and MongoDB documentation (mongoose).
           </p>
           <p>
-            In the process of training, I created a server for renting equipment rental (with equipment sorting by
-            parameters, price calculation, Telegram notifications, and SMS mailing)
+            In the process of training, I created a server for renting equipment (with equipment sorting by parameters,
+            booking time calculation, customer base with operating history, price calculation, Telegram notifications
+            and SMS)
           </p>
         </div>
         <div>
-          <h4>Full Stack Developer - Freelance</h4>
+          <h4>Freelance - Full Stack Developer</h4>
           <p>11.2019 - 04.2020</p>
 
           <p>Main stack: SCSS, React, React-Redux, Node, Express, AWS.</p>
 
-          <p>
-            1.(Made websites for selling clothes) 2.(Created a comfortable ecosystem for people who sell clothes).
-          </p>
+          <ul>
+            <li>Made websites for selling clothes</li>
+            <li>Created a comfortable ecosystem for people who sell clothes</li>
+          </ul>
+
           <p>
             Created many ready-made solutions for site selling clothes. Created Telegram sales notifications and a
-            convenient CRM system in Google Sheets. I created a server on which I placed all client sites and processed
-            requests from them.
+            convenient CRM system in Google Sheets and connect with LP-CRM. I created a server on which I placed all
+            client sites and processed requests from them.
           </p>
           <p>Created 10 one-page sites for client promotions</p>
           <p>Created 4 multi-page corporate websites</p>
           <p>Created an online store with customer authorization and his own CMS system</p>
+          <p>Sold from my sites about 10 thousand items worth about 3 million hryvnia</p>
         </div>
         <div>
-          <h4>Full Stack Developer in Startup</h4>
-          <p>04.2019 - now</p>
+          <h4>Startup - Full Stack Developer</h4>
+          <p>05.2019 - now</p>
 
-          <p>Main stack: React, React-Redux, Node, Express.</p>
+          <p>Main stack: React, React-Redux, Node, Express, moment.js .</p>
 
           <p>Work on - Queue program for wake park, social network for riders.</p>
+          <ul>
+            <li>Application settings and customization panel for owners</li>
+            <li>Convenient administration and accounting system</li>
+            <li>Notifying clients and administrators about changes</li>
+          </ul>
         </div>
       </div>
 
@@ -271,6 +275,7 @@
             <li>Node (NPM, Express, Express Session)</li>
             <li>DB (MongoDB, DynamoDB, Firebase)</li>
             <li>AWS (EC2, Elastic Beanstalk)</li>
+            <li>Also use (Moment.js, babel, ESLint)</li>
             <li>Principles and Patterns (OOP, SOLID, MVC, DRY, KISS, YAGNI)</li>
             <li>Integration with (Telegram, Google Sheets, Rapidapi Twilio SMS)</li>
           </ul>
@@ -281,63 +286,67 @@
           <h2>About Me</h2>
 
           <p>
-            I have a deep understanding of JavaScript and how it works. Most of the time I was a developer using the
-            React framework. I have a solid understanding of how to write code. I have basic knowledge of Node.js and
-            experience in writing API. I am constantly learning new things and deepening my existing knowledge through
-            technical literature. The code is all terribly interesting to me.
+            I lead an active lifestyle and introduce it with me to the team. Sociable, ready for new acquaintances and
+            open to new information. I will not ardently prove my point of view, I can always listen to the interlocutor
+            and draw the correct conclusions. I can admit my mistakes and correct them. I am constantly learning new
+            things and deepening my existing knowledge through technical literature. The code is all terribly
+            interesting to me.
           </p>
 
-          <h4>GOAL</h4>
+          <h4>Goal</h4>
           <ul>
-            <li>Become a qualified specialist. Create a great career.</li>
-            <li>Create an important and necessary product.</li>
+            <li>To Become a qualified specialist.</li>
+            <li>Creating an important and necessary product.</li>
             <li>Work and study with a good team.</li>
-            <li>Find a team of like-minded people.</li>
-            <li>Provide myself and my relatives</li>
+            <li>To Find a team of like-minded people.</li>
+            <li>Create a great career.</li>
           </ul>
 
           <h4>Wishes</h4>
-          <p>
-            I don't want to work on those tech support for the code. For me something more lively is more interesting.
-          </p>
+          <ul>
+            <li>
+              I don't want to work on those tech support for the code. For me something more lively is more interesting.
+            </li>
+            <li>I do not like work of famous CMS systems, I wanted to avoid working with them.</li>
+          </ul>
 
-          <h4>BAN</h4>
-          <p>Malware</p>
-          <p>Sexual content</p>
+          <h4>Ban</h4>
+          <ul>
+            <li>Malware.</li>
+          </ul>
         </div>
 
         <!-- Education -->
         <div>
           <h2>Education</h2>
-          <h4>Poltava Gymnasium №9</h4>
-          <span>2003 - 2011</span>
-
-          <h4>Poltava Lyceum №9</h4>
-          <span>2011 - 2014</span>
+          <ul>
+            <li>
+              <h5>Poltava Gymnasium №9</h5>
+              <span>2003 - 2011</span>
+            </li>
+            <li>
+              <h5>Poltava Lyceum №9</h5>
+              <span>2011 - 2014</span>
+            </li>
+          </ul>
         </div>
 
         <!-- Skills -->
         <div>
-          <h3>Skills</h3>
+          <h4>Skills</h4>
           <ul>
+            <li>Social Skills.</li>
             <li>Analytical mind.</li>
             <li>Responsibility.</li>
             <li>Attention to details.</li>
             <li>Focus on results.</li>
             <li>A constant desire to master new technologies and tools.</li>
           </ul>
-          <ul>
-            <li>ПОД ВОПРОСОМ</li>
-            <li>Teamwork skills.</li>
-            <li>Creative skills.</li>
-            <li>Ability to meet deadlines.</li>
-            <li>Ability to objectively assess their capabilities for solving tasks.</li>
-          </ul>
         </div>
 
         <!-- Languages -->
         <div>
-          <h3>Languages</h3>
+          <h4>Languages</h4>
           <ul>
             <li>English (intermediate)</li>
             <li>Ukrainian (native ability)</li>
@@ -347,8 +356,14 @@
 
         <!-- Hobbies -->
         <div>
-          <h3>Hobbies</h3>
-          <p>Traveling / Logical Tasks / Wakeboarding / Kiteboarding / Snowboarding</p>
+          <h4>Hobbies</h4>
+          <ul>
+            <li>Logical Tasks</li>
+            <li>Wakeboarding</li>
+            <li>Kiteboarding</li>
+            <li>Snowboarding</li>
+            <li>Acrobatics</li>
+          </ul>
         </div>
       </div>
     </section>
